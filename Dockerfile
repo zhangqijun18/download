@@ -2,7 +2,7 @@ FROM golang:latest
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN COPY sources.list /etc/apt/sources.list
+COPY sources.list /etc/apt/sources.list
 
 RUN curl https://haproxy.debian.net/bernat.debian.org.gpg | \
       apt-key add - && \
