@@ -10,7 +10,7 @@ RUN curl https://haproxy.debian.net/bernat.debian.org.gpg | \
       tee /etc/apt/sources.list.d/haproxy.list
         
 
-RUN pt-get clean all -yqq && apt-get update -yqq && \
+RUN apt-get clean all -yqq && apt-get update -yqq && \
     apt-get install -yqq software-properties-common && \
     apt-get install -yqq git mercurial supervisor && \
     apt-get install -yqq haproxy -t jessie-backports-1.5 && \
