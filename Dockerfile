@@ -2,21 +2,13 @@ FROM golang:latest
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN cat > /etc/apt/sources.list<<EOF
-deb http://mirrors.163.com/debian/ jessie main non-free contrib
-deb http://mirrors.163.com/debian/ jessie-updates main non-free contrib
-deb-src http://mirrors.163.com/debian/ jessie main non-free contrib
-deb-src http://mirrors.163.com/debian/ jessie-updates main non-free contrib
-deb http://mirrors.163.com/debian-security/ jessie/updates main non-free contrib
-deb-src http://mirrors.163.com/debian-security/ jessie/updates main non-free contrib
-EOF
+RUN COPY sources.list /etc/apt/sources.list
 
 RUN curl https://haproxy.debian.net/bernat.debian.org.gpg | \
       apt-key add - && \
     echo deb http://haproxy.debian.net jessie-backports-1.5 main | \
       tee /etc/apt/sources.list.d/haproxy.list
-      
-    
+        
 
 RUN apt-get update -yqq && \
     apt-get install -yqq software-properties-common && \
