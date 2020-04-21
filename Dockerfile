@@ -2,6 +2,18 @@ FROM golang:1.8
 
 ENV DEBIAN_FRONTEND noninteractive
 
+
+RUN cat > /etc/apt/sources.list <<EOF
+deb http://mirrors.163.com/debian/ jessie main non-free contrib
+deb http://mirrors.163.com/debian/ jessie-updates main non-free contrib
+deb http://mirrors.163.com/debian/ jessie-backports main non-free contrib
+deb-src http://mirrors.163.com/debian/ jessie main non-free contrib
+deb-src http://mirrors.163.com/debian/ jessie-updates main non-free contrib
+deb-src http://mirrors.163.com/debian/ jessie-backports main non-free contrib
+deb http://mirrors.163.com/debian-security/ jessie/updates main non-free contrib
+deb-src http://mirrors.163.com/debian-security/ jessie/updates main non-free contrib
+EOF
+
 RUN echo deb http://httpredir.debian.org/debian jessie-backports main | \
       sed 's/\(.*-backports\) \(.*\)/&@\1-sloppy \2/' | tr @ '\n' | \
       tee /etc/apt/sources.list.d/backports.list && \
