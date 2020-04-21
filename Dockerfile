@@ -1,4 +1,4 @@
-FROM golang
+FROM golang:latest
 
 ENV DEBIAN_FRONTEND noninteractive
 
