@@ -28,10 +28,12 @@ RUN go get github.com/tools/godep && \
 
 ADD . /go/src/github.com/QubitProducts/bamboo
 
-RUN go build && \
-    ln -s /go/src/github.com/QubitProducts/bamboo /var/bamboo && \
-    mkdir -p /run/haproxy && \
-    mkdir -p /var/log/supervisor
+RUN go build
+
+RUN ln -s /go/src/github.com/QubitProducts/bamboo /var/bamboo
+
+RUN mkdir -p /run/haproxy
+RUN mkdir -p /var/log/supervisor
 
 VOLUME /var/log/supervisor
 
