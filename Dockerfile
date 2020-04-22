@@ -45,4 +45,6 @@ RUN apt-get clean && \
 
 EXPOSE 80 8000
 
+RUN chmod +x /run.sh
+
 CMD /run.sh
